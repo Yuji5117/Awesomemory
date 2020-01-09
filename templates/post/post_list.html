@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}<link rel="stylesheet" href="{% static 'css/post/post_list.css' %}">{% endblock %}
+{% block title %}Love Memory{% endblock %}
+
+{% block search %}
+<div class="header-right">
+    <form class="search-box" action="/post/" method="GET">
+        <input class="search-txt" type="text" name="query" value="{{ request.GET.query }}" placeholder="Type to search">
+        <button class="search-btn" type="submit"><i class="fas fa-search"></i></button>
+    </form>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="main-inner">
+    <h2 class="sub-title">Your Memories</h2>
+    <div class="memory-items">
+        {% for post in post_list %}
+            <div class="memory-item">
+                <a href="{% url 'post:post_detail' post.pk %}">
+                    <img src="{{ post.image.url }}" alt="">
+                    <div class="item-text">
+                        <h3 class="item-title">{{ post.title }}</h3>
+                        <p>{{ post.text　| truncatechars:37 }}</p>
+                        <p>{{ comment.text }}</p>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+        {% include 'post/includes/page.html'%}
+    </div>
+</div>
+{% endblock %}
+
+

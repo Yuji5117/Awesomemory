@@ -1,0 +1,25 @@
+.card {
+    width: 35%;
+    height: 200px;
+    margin: 0 auto;
+    margin-top: 100px;
+    box-shadow: 0 5px 5px rgb(0, 0, 0, 0.5);
+}
+.card-body {
+    position: relative;
+    /* background-color: blue; */
+}
+.card-title {
+    padding-top: 20px;
+    text-align: center;
+}
+.delete-choice {
+    position: absolute;
+    bottom: 30px;
+    right: 50px;
+    display: flex;
+    /* background-color: red; */
+}
+.delete-form {
+    padding-left: 10px;
+}

@@ -1,0 +1,48 @@
+.section {
+    width: 80%;
+    margin: 0 auto;
+}
+.schedule-items {
+    height: 510px;
+    padding-top: 20px;
+    overflow: scroll;
+}
+.schedule-item {
+    width: 100%;
+    height: auto;
+    margin-bottom: 25px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #333;
+    border-radius: 10px;
+    box-shadow: 0 5px 5px rgb(0, 0, 0, 0.5);
+    transition: .5s;
+}
+.schedule-item:hover {
+    cursor: pointer;
+    transform: translateY(-10px);
+}
+.schedule-item a {
+    text-decoration: none;
+}
+.schedule-main {
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+.schedule-sub {
+    width: 100%;
+    padding: 5px 20px 15px 20px;
+    display: flex;
+    justify-content: space-between;
+}
+.schedule-text {
+    width: 70%;
+    height: auto;
+    /* background-color: blue; */
+}
+.btn-create {
+    margin-top: 55px;
+    text-align: center;
+}
