@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Love Memory{% endblock %}
+
+{% block content %}
+<h2>Memory</h2>
+<form action="" method="POST">
+    {% csrf_token %}
+    <p>Are you sure to delete this?</p>
+    <input type="submit" value="Delete">
+</form>
+{% endblock %}

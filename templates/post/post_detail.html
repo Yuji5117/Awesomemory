@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}<link rel="stylesheet" href="{% static 'css/post/post_detail.css' %}">{% endblock %}
+
+{% block title %}Love Memory{% endblock %}
+
+{% block content %}
+<div class="detail">
+    <h2 class="sub-title">Memory</h2>
+    <div class="image-container">
+        <a href="{% url 'post:index' %}"></a>
+        <h3>{{ post.title }}</h2>
+        {% if post.image %}
+        <img src="{{ post.image.url }}" alt="" width="300px" height="200px"><br>
+        {% endif %}
+        <p>{{ post.text }}</p>
+        <a href="{% url 'post:comment_create' post.pk %}">Comment</a>
+        <a href="{% url 'post:post_update' post.pk %}">Update</a>
+        <a href="{% url 'post:post_delete' post.pk %}">Delete</a>
+    </div>
+
+    <div class="comment-container">
+        <h2 class="detail-title">Comment List</h2>
+        {% for comment in comment_list %}
+            <p>{{ comment.text }}</p>
+            <a href="{% url 'post:reply_create' comment.pk %}">Reply</a>
+            {% with reply_list=comment.comment_set.all %}
+                {% include 'post/includes/reply.html' %}
+            {% endwith %}
+        {% endfor %}
+    </div>
+</div>
+
+
+
+{% endblock %}

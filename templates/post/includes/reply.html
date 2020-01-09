@@ -1,0 +1,7 @@
+{% for reply in reply_list %}
+    <p>{{ reply.text }}</p>
+    <a href="{% url 'post:reply_create' reply.pk %}">Reply</a>
+    {% with reply_list=reply.comment_set.all %}
+        {% include 'post/includes/reply.html' %}
+    {% endwith %}
+{% endfor %}
