@@ -84,7 +84,7 @@ WSGI_APPLICATION = 'conf.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'love_memory',
+        'NAME': 'lovememory',
         'USER': 'root',
         'PASSWORD': 'Yuji65235117/',
         'HOST': '127.0.0.1',

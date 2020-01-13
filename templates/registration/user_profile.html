@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}<link rel="stylesheet" href="{% static 'css/accounts/user_profile.css' %}">{% endblock %}
+
+{% block content %}
+<div class="user-profile">
+    <div class="inner-profile">
+        <div class="image-profile-container">
+            <!-- check image exist or not first then image will be able to show up-->
+            {% if user.userprofile.image %}
+            <img src="{{ user.userprofile.image.url }}" alt="" class="image-profile">
+            {% endif %}
+        </div>
+        <div class="info-profile-container">
+            <table class="profile-table">
+                <tr class="prof-block">
+                    <td class="prof-title">First Name</td>
+                    <td class="prof-info">{{ user.userprofile.first_name }}</td>
+                </tr>
+                <tr class="prof-block">
+                    <td class="prof-title">Last Name</td>
+                    <td class="prof-info">{{ user.userprofile.last_name }}</td>
+                </tr>
+                <tr class="prof-block">
+                    <td class="prof-title">Gender</td>
+                    <td class="prof-info"> {{ user.userprofile.gender }}</td>
+                </tr>
+                <tr class="prof-block">
+                    <td class="prof-title">Age</td>
+                    <td class="prof-info">{{ user.userprofile.age }}</td>
+                </tr>
+              </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
