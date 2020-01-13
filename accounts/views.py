@@ -1,9 +1,10 @@
 from django.contrib.auth import login
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
-from django.views.generic import CreateView
+from django.views.generic import DetailView, CreateView
 
 from .forms import SignupForm
+from .models import UserProfile
 
 class SignupView(CreateView):
     form_class = SignupForm
@@ -22,3 +23,7 @@ class SignupView(CreateView):
     #     super().form_valid(form)
     #     login(self.request, self.form)
     #     return valid
+
+class UserProfileView(DetailView):
+    model = UserProfile
+    template_name = 'registration/user_profile.html'

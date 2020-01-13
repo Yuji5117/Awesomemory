@@ -20,17 +20,18 @@
     transition: .5s;
 }
 .memory-item:hover {
-    opacity: 0.5;
+    opacity: 0.8;
     transform: translateY(15px);
     cursor: pointer;
 }
 .memory-item:hover:before {
     opacity: 1;
 }
-/* hover時に.item-texiを動かさない */
+/* hover時に.item-textを動かさない */
 .memory-item:hover .item-text {
     opacity: 1;
     transform: translateY(50px);
+    z-index: 2;
 }
 .memory-item:before {
     content: '';
