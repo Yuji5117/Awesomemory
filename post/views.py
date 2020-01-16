@@ -3,6 +3,8 @@ from django.views import generic
 from django.urls import reverse_lazy
 from django import forms
 from django.db.models import Q
+# 特定のログインユーザーしかページを見れないようにする、mixin #
+from django.contrib.auth.mixins import UserPassesTestMixin
 
 from .forms import PostForm
 from .models import Post, Comment, Category
@@ -11,7 +13,19 @@ from .models import Post, Comment, Category
 CommentForm = forms.modelform_factory(Comment, fields=('text', ))
 
 
-class IndexView(generic.ListView):
+# 特定のログインユーザーしかページを見れないようにする、mixin #
+class OnlyYouMixin(UserPassesTestMixin):
+    # 条件に満たさない場合ログインページに移動 (Trueの場合、404ページを表示) #
+    raise_exeption = True
+
+    #  今ログインしているユーザーのpkと、ユーザー情報のpkが同じか、or superuserなら許可 #
+    def test_func(self):
+        user = self.request.user
+        return user.pk == self.kwargs['pk'] or user.is_superuser
+
+
+
+class IndexView(generic.ListView, OnlyYouMixin):
     model = Post
     template_name = 'post/post_list.html'
     context_object_name = 'post_list'
@@ -31,15 +45,16 @@ class IndexView(generic.ListView):
         return object_list
 
 
-class PostDetail(generic.DetailView):
+class PostDetail(generic.DetailView, OnlyYouMixin):
     model = Post
     template_name = 'post/post_detail.html'
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        # どのコメントにも紐づかないコメント=記事自体へのコメント を取得する
-        context['comment_list'] = self.object.comment_set.filter(parent__isnull=True)
-        return context
+    # commentモデルを追加 #
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     # どのコメントにも紐づかないコメント=記事自体へのコメント を取得する
+    #     context['comment_list'] = self.object.comment_set.filter(parent__isnull=True)
+    #     return context
 
 class PostCreate(generic.CreateView):
     model = Post
@@ -51,7 +66,7 @@ class PostUpdate(generic.UpdateView):
     model = Post
     form_class = PostForm
     template_name = 'post/post_create.html'
-    success_url = reverse_lazy('post:index')
+    success_url = reverse_lazy('post:post_detail')
     
 
 class PostDelete(generic.DeleteView):
@@ -77,7 +92,10 @@ def comment_create(request, post_pk):
     }
     return render(request, 'post/comment_form.html', context)
 
+
+# repry method to comment #
 def reply_create(request, comment_pk):
+    # get Comment model instead of Post #
     comment = get_object_or_404(Comment, pk=comment_pk)
     post = comment.post
     form = CommentForm(request.POST or None)

@@ -22,8 +22,20 @@ class ProfileForm(forms.ModelForm):
         fields = ("first_name", "last_name", "gender", 'age')
 
     # To add class in the form #
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        # To add 'class="form-control"' into everyfield of Profile molde  #
-        for field in self.fields.values():
-            field.widget.attrs['class'] = 'form-control'
+    # def __init__(self, *args, **kwargs):
+    #     super().__init__(*args, **kwargs)
+    #     # To add 'class="form-control"' into everyfield of Profile molde  #
+    #     for field in self.fields.values():
+    #         field.widget.attrs['class'] = 'form-control'
+
+
+class UserUpdateForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('email',)
+
+
+class ProfileUpdateForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ("profile_image", "first_name", "last_name", "gender", 'age')

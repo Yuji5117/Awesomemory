@@ -6,29 +6,37 @@
 {% block title %}Love Memory{% endblock %}
 
 {% block content %}
-<div class="detail">
+<div class="detail-wrapper">
     <h2 class="sub-title">Memory</h2>
-    <div class="image-container">
-        <a href="{% url 'post:index' %}"></a>
-        <h3>{{ post.title }}</h2>
+    <div class="detail-inner">
+        <div class="detail-image-title">
+            <h2>{{ post.title }}</h2>
+            <div class="btns">
+                <a class="btn btn-outline-primary" href="{% url 'post:index' %}">Back</a>
+                <a class="btn btn-primary" href="{% url 'post:post_update' post.pk %}">Update</a>
+                <a class="btn btn-danger" href="{% url 'post:post_delete' post.pk %}">Delete</a>
+            </div>
+        </div>
         {% if post.image %}
-        <img src="{{ post.image.url }}" alt="" width="300px" height="200px"><br>
+        <div class="detail-image">
+            <img src="{{ post.image.url }}" alt="" width="300px" height="200px">
+        </div>
         {% endif %}
-        <p>{{ post.text }}</p>
-        <a href="{% url 'post:comment_create' post.pk %}">Comment</a>
-        <a href="{% url 'post:post_update' post.pk %}">Update</a>
-        <a href="{% url 'post:post_delete' post.pk %}">Delete</a>
-    </div>
-
-    <div class="comment-container">
-        <h2 class="detail-title">Comment List</h2>
-        {% for comment in comment_list %}
-            <p>{{ comment.text }}</p>
-            <a href="{% url 'post:reply_create' comment.pk %}">Reply</a>
-            {% with reply_list=comment.comment_set.all %}
+        <div class="detail-image-text">
+            <p class="post-text">{{ post.text }}</p>
+        </div>
+            <!-- <a class="btn btn-primary" href="{% url 'post:comment_create' post.pk %}">Comment</a> -->
+            
+            <!-- <div class="comment-container">
+                <h2 class="detail-title">Comment List</h2>
+                {% for comment in comment_list %}
+                <p>{{ comment.text }}</p>
+                <a href="{% url 'post:reply_create' comment.pk %}">Reply</a>
+                {% with reply_list=comment.comment_set.all %}
                 {% include 'post/includes/reply.html' %}
-            {% endwith %}
-        {% endfor %}
+                {% endwith %}
+                {% endfor %}
+            </div> -->
     </div>
 </div>
 

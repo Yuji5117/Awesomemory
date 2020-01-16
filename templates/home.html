@@ -1,3 +1,13 @@
-Hello </br>
-<a href="{% url 'password_reset' %}">password_reset</a></br>
-<a href="{% url 'logout' %}">Logout</a>
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}<link rel="stylesheet" href="{% static 'css/home.css' %}">{% endblock %}
+
+{% block home %}
+    <div class="home-wrapper">
+        <div class="home-inner">
+            <h1 class="home-title">Welcome to Love Memory</h1>
+            <h2 class="home-subtitle">Let's create your awesome memory</h2>
+            <a  class="btn btn-primary" href="{% url 'login' %}">Get Started</a>
+        </div>
+    </div>
+{% endblock %}

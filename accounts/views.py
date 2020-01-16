@@ -1,9 +1,10 @@
+from django.shortcuts import render, redirect, resolve_url
 from django.contrib.auth import login
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
-from django.views.generic import DetailView, CreateView
+from django.views.generic import DetailView, CreateView, UpdateView
 
-from .forms import SignupForm
+from .forms import SignupForm, ProfileForm, UserUpdateForm, ProfileUpdateForm
 from .models import UserProfile
 
 class SignupView(CreateView):
@@ -27,3 +28,38 @@ class SignupView(CreateView):
 class UserProfileView(DetailView):
     model = UserProfile
     template_name = 'registration/user_profile.html'
+
+
+class UserProfileUpdateView(UpdateView):
+    model = UserProfile
+    form_class = ProfileUpdateForm
+    template_name = 'registration/user_profile_update.html'
+    # success_url = reverse_lazy('accounts:profile')
+
+    def get_success_url(self):
+        return resolve_url('accounts:profile', pk=self.kwargs['pk'])
+
+
+
+
+
+# def update_profile(request, pk):
+#     # u_form = UserUpdateForm
+
+#     #  もしrequestがPOSTだったら元々あるインスタンス、リクエスト内容とファイルを受け取る #
+#     if request.method == 'POST':
+#         profile_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.userprofile)
+
+#         #  バリデーションを行う OKならsave #
+#         if profile_form.is_valid():
+#             profile_form.save()
+#             messages.success(request, f'Your account has been updated!!')
+#             return redirect('accounts:profile')
+#     # if not  元々あるインスタンスだけを返す #
+#     else:
+#         profile_form = ProfileUpdateForm(instance=request.user.userprofile)
+#     context = {
+#         # 'u_form': u_form,
+#         'profile_form': profile_form
+#     }
+#     return render(request, 'registration/user_profile_update.html', context)
