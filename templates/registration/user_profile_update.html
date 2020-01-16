@@ -10,6 +10,7 @@
         <form action="" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="profile-update">
+                <a href="{% url 'accounts:profile' userprofile.pk %}" class="btn btn-outline-primary">Back</a>
                 <button type="submit" class="btn btn-primary">Update</button>
             </div>
             <div class="image-profile-update-container">
