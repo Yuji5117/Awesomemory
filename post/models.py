@@ -1,6 +1,14 @@
 from django.db import models
+from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
+
+# imagelit #
 from imagekit.models import ImageSpecField, ProcessedImageField
 from imagekit.processors import ResizeToFill
+
+
+# To use users.CustomUser #
+User = get_user_model()
 
 
 
@@ -12,11 +20,12 @@ class Category(models.Model):
 
 
 class Post(models.Model):
-    title = models.CharField('タイトル', max_length=50)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    thumbnail = ImageSpecField(source='image', processors=[ResizeToFill(250,250)])
-    image = models.FileField('画像', upload_to='photos/%y/%m/%d', null=True, blank=True)
-    text = models.TextField()
+    # user       = models.OneToOneField(User, on_delete=models.CASCADE)
+    title      = models.CharField('タイトル', max_length=50)
+    category   = models.ForeignKey(Category, on_delete=models.CASCADE)
+    thumbnail  = ImageSpecField(source='image', processors=[ResizeToFill(250,250)])
+    image      = models.FileField('画像', upload_to='photos/%y/%m/%d', null=True, blank=True)
+    text       = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

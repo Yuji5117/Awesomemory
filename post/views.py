@@ -1,31 +1,31 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, resolve_url
 from django.views import generic
 from django.urls import reverse_lazy
 from django import forms
 from django.db.models import Q
 # 特定のログインユーザーしかページを見れないようにする、mixin #
-from django.contrib.auth.mixins import UserPassesTestMixin
+from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 
-from .forms import PostForm
+from .forms import PostForm, PostModelFormSet
 from .models import Post, Comment, Category
 
 
 CommentForm = forms.modelform_factory(Comment, fields=('text', ))
 
 
-# 特定のログインユーザーしかページを見れないようにする、mixin #
-class OnlyYouMixin(UserPassesTestMixin):
-    # 条件に満たさない場合ログインページに移動 (Trueの場合、404ページを表示) #
-    raise_exeption = True
+# # 特定のログインユーザーしかページを見れないようにする、mixin #
+# class OnlyYouMixin(UserPassesTestMixin):
+#     # 条件に満たさない場合ログインページに移動 (Trueの場合、404ページを表示) #
+#     raise_exeption = True
 
-    #  今ログインしているユーザーのpkと、ユーザー情報のpkが同じか、or superuserなら許可 #
-    def test_func(self):
-        user = self.request.user
-        return user.pk == self.kwargs['pk'] or user.is_superuser
+#     #  今ログインしているユーザーのpkと、ユーザー情報のpkが同じか、or superuserなら許可 #
+#     def test_func(self):
+#         user = self.request.user
+#         return user.pk == self.kwargs['pk'] or user.is_superuser
 
 
 
-class IndexView(generic.ListView, OnlyYouMixin):
+class IndexView(LoginRequiredMixin, generic.ListView):
     model = Post
     template_name = 'post/post_list.html'
     context_object_name = 'post_list'
@@ -45,7 +45,7 @@ class IndexView(generic.ListView, OnlyYouMixin):
         return object_list
 
 
-class PostDetail(generic.DetailView, OnlyYouMixin):
+class PostDetail(LoginRequiredMixin, generic.DetailView):
     model = Post
     template_name = 'post/post_detail.html'
 
@@ -56,20 +56,44 @@ class PostDetail(generic.DetailView, OnlyYouMixin):
     #     context['comment_list'] = self.object.comment_set.filter(parent__isnull=True)
     #     return context
 
-class PostCreate(generic.CreateView):
+
+class PostCreate(LoginRequiredMixin, generic.CreateView):
     model = Post
     form_class = PostForm
     template_name = 'post/post_create.html'
     success_url = reverse_lazy('post:index')
 
-class PostUpdate(generic.UpdateView):
+
+def multi_upload(request):
+    post = request.POST or None
+    files = request.FILES or None
+    #  すでにアップロード済みのファイルは表示しないという設定 #
+    queryset = Post.objects.none()
+
+    formset = PostModelFormSet(post, files, queryset)
+
+    if request.method == 'POST' and formset.is_valid():
+        formset.save()
+        return redirect('post:index')
+
+    context = {
+        'formset': formset
+    }
+    return render(request, 'post/post_create.html', context)
+
+
+
+class PostUpdate(LoginRequiredMixin, generic.UpdateView):
     model = Post
     form_class = PostForm
     template_name = 'post/post_create.html'
-    success_url = reverse_lazy('post:post_detail')
+
+    #  #
+    def get_success_url(self):
+        return resolve_url('post:post_detail', pk=self.kwargs['pk'])
     
 
-class PostDelete(generic.DeleteView):
+class PostDelete(LoginRequiredMixin, generic.DeleteView):
     model = Post
     template_name = 'post/post_delete.html'
     success_url = reverse_lazy('post:index')
@@ -107,10 +131,10 @@ def reply_create(request, comment_pk):
         reply.save()
         return redirect('post:post_detail', pk=post.pk)
 
-    context = {
-        'post': post,
-        'form': form,
-        'comment': comment
-    }
-    return render(request, 'post/comment_form.html', context)
+#     context = {
+#         'post': post,
+#         'form': form,
+#         'comment': comment
+#     }
+#     return render(request, 'post/comment_form.html', context)
 
