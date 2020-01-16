@@ -1,0 +1,36 @@
+.login-wrapper {
+    padding-top: 70px;
+}
+.login-form {
+    width: 50%;
+    height: 550px;
+    margin: 0 auto;
+    border: 1px solid #333;
+    border-radius: 5px;
+    box-shadow: 0 10px 10px rgb(0, 0, 0, 0.3);
+}
+.form-group {
+    padding: 20px 40px 0 40px;
+    background-color: #fff;
+}
+.login-btn {
+    padding: 20px 40px 0 40px;
+}
+
+
+/* password reset section */
+.password-reset-wrapper {
+    padding-top: 70px;
+}
+.password-reset-form {
+    width: 80%;
+    height: 400px;
+    margin: 0 auto;
+    border: 1px solid #333;
+    border-radius: 5px;
+    box-shadow: 0 10px 10px rgb(0, 0, 0, 0.3);
+}
+.reset-text {
+    font-size: 18px;
+    padding-left: 40px;
+}

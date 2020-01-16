@@ -6,29 +6,36 @@
 {% block content %}
 <div class="user-profile">
     <div class="inner-profile">
+        <div class="profile-update">
+            <a class="btn btn-primary" href="{% url 'accounts:update_profile' user.userprofile.pk %}">Update</a>
+        </div>
         <div class="image-profile-container">
             <!-- check image exist or not first then image will be able to show up-->
-            {% if user.userprofile.image %}
-            <img src="{{ user.userprofile.image.url }}" alt="" class="image-profile">
+            {% if userprofile.profile_image %}
+            <img src="{{ userprofile.profile_image.url }}" alt="" class="image-profile">
             {% endif %}
         </div>
         <div class="info-profile-container">
             <table class="profile-table">
                 <tr class="prof-block">
+                    <td class="prof-title">Email</td>
+                    <td class="prof-info">{{ user.email }}</td>
+                </tr>
+                <tr class="prof-block">
                     <td class="prof-title">First Name</td>
-                    <td class="prof-info">{{ user.userprofile.first_name }}</td>
+                    <td class="prof-info">{{ userprofile.first_name }}</td>
                 </tr>
                 <tr class="prof-block">
                     <td class="prof-title">Last Name</td>
-                    <td class="prof-info">{{ user.userprofile.last_name }}</td>
+                    <td class="prof-info">{{ userprofile.last_name }}</td>
                 </tr>
                 <tr class="prof-block">
                     <td class="prof-title">Gender</td>
-                    <td class="prof-info"> {{ user.userprofile.gender }}</td>
+                    <td class="prof-info"> {{ userprofile.gender }}</td>
                 </tr>
                 <tr class="prof-block">
                     <td class="prof-title">Age</td>
-                    <td class="prof-info">{{ user.userprofile.age }}</td>
+                    <td class="prof-info">{{ userprofile.age }}</td>
                 </tr>
               </table>
         </div>
