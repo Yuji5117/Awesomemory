@@ -18,7 +18,7 @@
     <h2 class="sub-title">Your Memories</h2>
     <div class="memory-items">
         {% for post in post_list %}
-            <div class="memory-item">
+        <div class="memory-item">
                 <a href="{% url 'post:post_detail' post.pk %}">
                     <img src="{{ post.image.url }}" alt="">
                     <div class="item-text">
