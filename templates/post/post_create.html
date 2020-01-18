@@ -16,7 +16,7 @@
             <label for="category">Category</label>
             {{ form.category|add_class:"form-control" }}
             <label for="image">Image or File</label>
-            {{ formset | add_class:"form-control-file" }}
+            {{ form.image | add_class:"form-control-file" }}
             <label for="text">Text</label>
             {{ form.text|add_class:"form-control" }}
             <a class="btn btn-outline-primary" href="{% url 'post:index' %}">Back</a>

@@ -20,7 +20,7 @@ class Category(models.Model):
 
 
 class Post(models.Model):
-    # user       = models.OneToOneField(User, on_delete=models.CASCADE)
+    created_by  = models.ForeignKey(User, on_delete=models.CASCADE)
     title      = models.CharField('タイトル', max_length=50)
     category   = models.ForeignKey(Category, on_delete=models.CASCADE)
     thumbnail  = ImageSpecField(source='image', processors=[ResizeToFill(250,250)])

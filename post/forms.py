@@ -6,12 +6,10 @@ from .models import Post, Category, Comment
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ['title', 'category', 'image', 'text']
-    
-PostModelFormSet = forms.modelformset_factory(
-    Post, form=PostForm,
-    extra=3
-)
+        fields = ['title', 'category', 'image', 'text'] 
+
+
+# class CategoryForm(forms.ModelForm):
 
 
 

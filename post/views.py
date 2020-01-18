@@ -6,7 +6,7 @@ from django.db.models import Q
 # 特定のログインユーザーしかページを見れないようにする、mixin #
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 
-from .forms import PostForm, PostModelFormSet
+from .forms import PostForm
 from .models import Post, Comment, Category
 
 
@@ -14,38 +14,50 @@ CommentForm = forms.modelform_factory(Comment, fields=('text', ))
 
 
 # # 特定のログインユーザーしかページを見れないようにする、mixin #
-# class OnlyYouMixin(UserPassesTestMixin):
-#     # 条件に満たさない場合ログインページに移動 (Trueの場合、404ページを表示) #
-#     raise_exeption = True
+class OnlyYouMixin(UserPassesTestMixin):
+    # 条件に満たさない場合ログインページに移動 (Trueの場合、404ページを表示) #
+    raise_exeption = True
 
-#     #  今ログインしているユーザーのpkと、ユーザー情報のpkが同じか、or superuserなら許可 #
-#     def test_func(self):
-#         user = self.request.user
-#         return user.pk == self.kwargs['pk'] or user.is_superuser
+    #  今ログインしているユーザーのpkと、ユーザー情報のpkが同じか、or superuserなら許可 #
+    def test_func(self):
+        user = self.request.user
+        return user.pk == self.kwargs['pk']
 
 
 
-class IndexView(LoginRequiredMixin, generic.ListView):
+class IndexView(generic.ListView):
     model = Post
     template_name = 'post/post_list.html'
     context_object_name = 'post_list'
     paginate_by = 6
 
-    # Search func
+    #  Userそれぞれの専用POSTを絞り込み created_by=self.request.userでフィルタリング #
     def get_queryset(self):
-        q_word = self.request.GET.get('query')
+        # #  #
+        # query = self.request.GET.get('query')
+        # if query:
+        #     post_list = Post.objects.filter(title__icontains=query)
+        # else:
+        #     post_list = Post.objects.all()
 
-        if q_word:
-            object_list = Post.objects.filter(
-                Q(title__icontains=q_word)
-            )
-        else:
-            object_list = Post.objects.all()
+        return Post.objects.filter(created_by=self.request.user)
+        
 
-        return object_list
+    # Search func
+    # def get_queryset(self):
+    #     q_word = self.request.GET.get('query')
+
+    #     if q_word:
+    #         object_list = Post.objects.filter(
+    #             Q(title__icontains=q_word)|Q(category__name=q_word)
+    #         )
+    #     else:
+    #         object_list = Post.objects.all()
+
+    #     return object_list
 
 
-class PostDetail(LoginRequiredMixin, generic.DetailView):
+class PostDetail(OnlyYouMixin, generic.DetailView):
     model = Post
     template_name = 'post/post_detail.html'
 
@@ -63,23 +75,29 @@ class PostCreate(LoginRequiredMixin, generic.CreateView):
     template_name = 'post/post_create.html'
     success_url = reverse_lazy('post:index')
 
+    # Postモデルのcreated_by fieldにuser_id　を自動的に追加する。  #
+    def form_valid(self, form):
+        form.instance.created_by_id = self.request.user.id
+        return super().form_valid(form)
 
-def multi_upload(request):
-    post = request.POST or None
-    files = request.FILES or None
-    #  すでにアップロード済みのファイルは表示しないという設定 #
-    queryset = Post.objects.none()
 
-    formset = PostModelFormSet(post, files, queryset)
 
-    if request.method == 'POST' and formset.is_valid():
-        formset.save()
-        return redirect('post:index')
+# def multi_upload(request):
+#     post = request.POST or None
+#     files = request.FILES or None
+#     #  すでにアップロード済みのファイルは表示しないという設定 #
+#     queryset = Post.objects.none()
 
-    context = {
-        'formset': formset
-    }
-    return render(request, 'post/post_create.html', context)
+#     formset = PostModelFormSet(post, files, queryset)
+
+#     if request.method == 'POST' and formset.is_valid():
+#         formset.save()
+#         return redirect('post:index')
+
+#     context = {
+#         'formset': formset
+#     }
+#     return render(request, 'post/post_create.html', context)
 
 
 
