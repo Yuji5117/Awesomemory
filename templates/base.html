@@ -18,11 +18,11 @@
     <header>
         <div class="header-container">
             <div class="header-left">
-                <h1 class="header-logo"><a href="{% url 'post:index' %}">Love Memory</a></h1>
+                <h1 class="header-logo"><a href="{% url 'post:post' %}">Love Memory</a></h1>
                 {% if user.is_authenticated %}
                 <nav>
                     <ul class="header-nav">
-                        <li><a href="{% url 'post:index' %}">Memories</a></li>
+                        <li><a href="{% url 'post:post' %}">Memories</a></li>
                         <!-- <li><a href="#">Favoraite</a></li> -->
                         <li><a href="{% url 'post:post_create' %}">Post</a></li>
                         <li><a href="{% url 'schedule:schedule' %}">Schedule</a></li>

@@ -11,19 +11,20 @@
         <h2 class="sub-title">Post Your Memory</h2>
         <form class="post-form" action="" method="Post" enctype="multipart/form-data">
             {% csrf_token %}
-            <label for="title">Title</label>
+            <!-- <label for="title">Title</label>
             {{ form.title|add_class:"form-control" }}
             <label for="category">Category</label>
             {{ form.category|add_class:"form-control" }}
             <label for="thumbnail">Thumbnail</label>
-            {{ form.image | add_class:"form-control-file" }}
+            <!-- {{ form.image | add_class:"form-control-file" }} -->
             <label for="images">Images</label>
-            <!-- {{ formsets.management_form }}
+            {{ formsets.management_form }}
             {% for form in formsets %}
             {{ form.as_p }}
-            {% endfor %} -->
-            <label for="text">Text</label>
-            {{ form.text|add_class:"form-control" }}
+            {% endfor %}
+            <!-- <label for="text">Text</label>
+            {{ form.text|add_class:"form-control" }} -->
+
             <a class="btn btn-outline-primary" href="{% url 'post:post' %}">Back</a>
             <button type="submit" class="btn btn-primary">Create</button>
         </form>
