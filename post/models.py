@@ -11,6 +11,12 @@ from imagekit.processors import ResizeToFill
 User = get_user_model()
 
 
+# class PostManager(models.Manager):
+#     def get_queryset(self):
+#         user = User.objects.get(email)
+#         return self.get_queryset().filter(created_by=user)
+
+
 
 class Category(models.Model):
     name = models.CharField('カテゴリー', max_length=50)
@@ -29,12 +35,19 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    # only_user  = PostManager()
+
 
     def __str__(self):
         return self.title
 
     def get_absolute_url(self):
         return reverse("post:detail", kwargs={'pk' : self.pk})
+
+
+class Image(models.Model):
+    post         = models.ForeignKey(Post, related_name='multi_img', on_delete=models.CASCADE)
+    multi_images = models.FileField('画像', upload_to='photos/%y/%m/%d', null=True, blank=True)
 
 
 class Comment(models.Model):
