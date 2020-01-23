@@ -144,10 +144,13 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 ## Authentication ##
 
+# login 成功時のリダイレクト先 #
 LOGIN_REDIRECT_URL = 'post:post'
 
+# logout 成功時のリダイレクト先 #
 LOGOUT_REDIRECT_URL = '/accounts/login/'
 
+# CustomUser使うことを宣言 #
 AUTH_USER_MODEL = 'users.CustomUser'
 
 ## Email ##

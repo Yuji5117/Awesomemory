@@ -10,12 +10,12 @@
         {% for schedule in schedule_list %}
         <div class="schedule-item">
             <div class="schedule-main">
-                <h3 class="">{{ schedule.summary }}</h3>
+                <h3 class="">{{ schedule.title }}</h3>
                 <h3>{{ schedule.date }}</h3>
             </div>
             <div class="schedule-sub">
                 <div class="schedule-text">
-                    <p class="schedule-desc">{{ schedule.description　| truncatechars:70 }}</p>
+                    <p class="schedule-desc">{{ schedule.content　| truncatechars:85 }}</p>
                 </div>
                 <div class="schedule-btn">
                     <a class="btn btn-primary" href="{% url 'schedule:schedule_update' schedule.pk %}">Update</a>
@@ -25,7 +25,7 @@
         </div>
         {% endfor %}
     </div>
-    <a class="btn btn-primary btn-create" href="{% url 'schedule:schedule_create' %}">Create</a>
+    <a class="btn btn-primary btn-create" href="{% url 'schedule:schedule_create' %}">New Schedule</a>
 </section>
 
 

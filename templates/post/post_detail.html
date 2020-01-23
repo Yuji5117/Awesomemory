@@ -7,39 +7,37 @@
 
 {% block content %}
 <div class="detail-wrapper">
-    <h2 class="sub-title">Memory</h2>
-    <div class="detail-inner">
-        <div class="detail-image-title">
-            <h2>{{ post.title }}</h2>
-            <div class="btns">
+    <h2 class="sub-title">ー {{ post.title }}  ー</h2>
+    <div class="update-btn">
+        <a class="btn btn-outline-primary" href="{% url 'post:post_update_image' post.pk %}">Update Image</a>
+    </div>
+    <div class="detail-inner d-flex">
+
+        <div class="thumbnail-container">
+            {% if post.thumbnail %}
+            <div class="detail-thumbnail">
+                <img class="thumbnail" src="{{ post.thumbnail.url }}" alt="" width="400px" height="250px">
+            </div>
+            {% endif %}
+            <div class="detail-thumbnail-text">
+                <p class="post-text">{{ post.text }}</p>
+            </div>
+            <div class="btns-items">
                 <a class="btn btn-outline-primary" href="{% url 'post:post' %}">Back</a>
-                
                 <a class="btn btn-primary" href="{% url 'post:post_update' post.pk %}">Update</a>
                 <a class="btn btn-danger" href="{% url 'post:post_delete' post.pk %}">Delete</a>
             </div>
         </div>
-        {% if post.image %}
-        <div class="detail-image">
-            {% if post.image %}
-            <img src="{{ post.image.url }}" alt="" width="300px" height="200px">
-            {% endif %}
-        </div>
-        {% endif %}
-        <div class="detail-image-text">
-            <p class="post-text">{{ post.text }}</p>
-        </div>
-            <!-- <a class="btn btn-primary" href="{% url 'post:comment_create' post.pk %}">Comment</a> -->
-            
-            <!-- <div class="comment-container">
-                <h2 class="detail-title">Comment List</h2>
-                {% for comment in comment_list %}
-                <p>{{ comment.text }}</p>
-                <a href="{% url 'post:reply_create' comment.pk %}">Reply</a>
-                {% with reply_list=comment.comment_set.all %}
-                {% include 'post/includes/reply.html' %}
-                {% endwith %}
+
+        <div class="detail-image-container">
+            <div class="detail-image">
+                {% for image in post.multi_img.all %}
+                {% if image.multi_images %}
+                <img class="multi-images mr-3" src="{{ image.multi_images.url }}" alt="" width="270px" height="190px">
+                {% endif %}
                 {% endfor %}
-            </div> -->
+            </div>
+        </div>
     </div>
 </div>
 

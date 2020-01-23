@@ -1,31 +1,54 @@
 .detail-inner {
-    display: flex;
-    flex-direction: column;
-}
-.detail-inner {
+    padding-bottom: 10px;
     width: 100%;
-    border: 1px solid #333;
-    /* background-color: pink; */
-}
-.detail-image-title {
-    padding: 10px;
+    height: 650px;
     display: flex;
-    justify-content: space-between;
+}
+.update-btn {
+    position: absolute;
+    top: 100px;
+    right: 80px;
+}
+.thumbnail-container {
+    width: 33%;
+}
+.detail-thumbnail {
+    padding: 10px;
+}
+.thumbnail {
+    box-shadow: 0 10px 10px rgb(0, 0, 0, 0.5);
+}
+.detail-thumbnail-text {
+    padding: 20px 10px 20px 10px;
+}
+.post-text {
+    height: 200px;
+    padding: 5px;
+    overflow: scroll;
+    overflow-wrap: break-word;
+    border: 1px solid green;
+    /* background-color: rgb(230, 230, 230); */
+}
+.detail-image-container {
+    width: 100%;
+    overflow: scroll;
+    padding-bottom: 10px;
     /* background-color: blue; */
 }
 .detail-image {
+    padding: 10px 0 10px 15px;
+}
+.multi-images {
+    margin-bottom: 15px;
+    object-fit: cover;
+    box-shadow: 0 10px 10px rgb(0, 0, 0, 0.5);
+    background-color: green;
+}
+.btns-items {
     padding: 10px;
-    /* background-color: green; */
-}
-.detail-image-text {
-    padding: 10px;
-    height: 100px;
-    /* background-color: ; */
-}
-.post-text {
-    overflow: visable;
-    overflow-wrap: break-word;
-}
-.btns {
+    display: flex;
     /* background-color: red; */
+}
+.btns-items .btn {
+    margin-right: 5px;
 }

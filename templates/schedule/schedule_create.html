@@ -14,11 +14,11 @@
             <label for="Date">Date</label><br>
             {{ form.date | add_class:"mb-3" }}<br>
             <label for="Event">Event</label>
-            {{ form.summary | add_class:"form-control mb-3" }}
+            {{ form.title | add_class:"form-control mb-3" }}
             <label for="Content">Content</label>
-            {{ form.description | add_class:"form-control mb-5" }}
+            {{ form.content | add_class:"form-control mb-5" }}
             <a class="btn btn-outline-primary" href="{% url 'schedule:schedule' %}">Back</a>
-            <button type="submit" class="btn btn-primary">Create</button>
+            <button type="submit" class="btn btn-primary">Post</button>
         </form>
     </div>
 </section>

@@ -2,7 +2,7 @@
     width: 100%;
     height: 100%;
     position: relative;
-    background-color: pink;
+    background: linear-gradient(to bottom right, #f79d00, #64f38c); 
 }
 .home-inner {
     width: 750px;

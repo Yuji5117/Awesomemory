@@ -1,12 +1,19 @@
 {% extends 'base.html' %}
+{% load static %}
 
-{% block title %}Love Memory{% endblock %}
+{% block css %}<link rel="stylesheet" href="{% static 'css/confirm_delete.css' %}">{% endblock %}
 
 {% block content %}
-<h2>Memory</h2>
-<form action="" method="POST">
-    {% csrf_token %}
-    <p>Are you sure to delete this?</p>
-    <input type="submit" value="Delete">
-</form>
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Are you sure you want to delete {{ post.title }}?</h5>
+        <div class="delete-choice">
+            <a class="btn btn-outline-primary" href="{% url 'schedule:schedule' %}">Back</a>
+            <form class="delete-form" action="" method="POST">
+                {% csrf_token %}
+                <button class="btn btn-danger">Delete</button>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock %}

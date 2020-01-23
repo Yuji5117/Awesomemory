@@ -1,0 +1,26 @@
+<!-- Header section -->
+<header>
+        <div class="header-container">
+            <div class="header-left">
+                <h1 class="header-logo"><a href="{% url 'post:post' %}">Awesomemory</a></h1>
+                {% if user.is_authenticated %}
+                <nav>
+                    <ul class="header-nav">
+                        <li><a href="{% url 'post:post' %}">Memories</a></li>
+                        <!-- <li><a href="#">Favoraite</a></li> -->
+                        <li><a href="{% url 'post:post_create' %}">Post</a></li>
+                        <li><a href="{% url 'schedule:schedule' %}">Schedule</a></li>
+                        <!-- (user.userprofile.pk)にするとログインしてるユーザーのpkのprifileにいく -->
+                        <li><a href="{% url 'accounts:profile' user.userprofile.pk %}">Profile</a></li>
+                        <!-- <li><a href="{% url 'accounts:profile' user.userprofile.pk %}">Profile</a></li> -->
+                        <li><a href="{% url 'logout' %}">Logout</a></li>
+                    </ul>
+                </nav>
+                {% endif %}
+            </div>
+            {% block search %}
+            {% endblock %}
+        </div>
+    </header>
+
+    <!-- Home block -->

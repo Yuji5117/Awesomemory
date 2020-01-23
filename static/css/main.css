@@ -15,7 +15,6 @@ ul, h1, h2, h3, p, a {
     margin: 0;
 }
 .wrapper {
-    /* background: url("/static/img/background.jpg")  ; */
     background-size: cover;
 }
 .sub-title {
@@ -25,15 +24,15 @@ ul, h1, h2, h3, p, a {
     padding: 30px 0 10px 0;
     margin: 0;
     text-align: center;
-    color: pink;
+    color: linear-gradient(to bottom right, #00b09b, #96c93d);
 }
 
 /* body */
 /* header */
 header {
-    background-color: rgb(235, 146, 161);
+    background: linear-gradient(to bottom right, #00b09b, #96c93d); 
     width: 100%;
-    height: 60px;
+    height: 55px;
 }
 .header-container { 
     /* background-color: green; */
@@ -82,6 +81,7 @@ header {
     color: black;
     background-color: #fff;
 }
+
 /* header-right */
 .header-right {
     height: 60px;
@@ -136,7 +136,7 @@ header {
     height: 100%;
 }
 .wrapper-container {
-    width: 80%;
+    width: 92%;
     height: auto;
     margin: 0 auto;
 }
