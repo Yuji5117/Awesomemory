@@ -11,7 +11,7 @@
             {% csrf_token %}
             <div class="profile-update">
                 <a href="{% url 'accounts:profile' userprofile.pk %}" class="btn btn-outline-primary">Back</a>
-                <button type="submit" class="btn btn-primary">Update</button>
+                <button type="submit" class="btn btn-primary">Save</button>
             </div>
             <div class="image-profile-update-container">
                 <!-- check image exist or not first then image will be able to show up-->

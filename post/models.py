@@ -28,7 +28,7 @@ class Category(models.Model):
 class Post(models.Model):
     created_by  = models.ForeignKey(User, on_delete=models.CASCADE)
     title      = models.CharField('タイトル', max_length=50)
-    category   = models.ForeignKey(Category, on_delete=models.CASCADE)
+    category   = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, blank=True)
     thumbnail  = ImageSpecField(source='image', processors=[ResizeToFill(250,250)])
     image      = models.FileField('画像', upload_to='photos/%y/%m/%d', null=True, blank=True)
     text       = models.TextField()
@@ -49,16 +49,21 @@ class Image(models.Model):
     post         = models.ForeignKey(Post, related_name='multi_img', on_delete=models.CASCADE)
     multi_images = models.FileField('画像', upload_to='photos/%y/%m/%d', null=True, blank=True)
 
-
-class Comment(models.Model):
-    text = models.TextField('Comment')
-    post = models.ForeignKey(Post, verbose_name='対象メモリー', on_delete=models.CASCADE)
-
-    """ Commentに結びつく """
-    parent = models.ForeignKey('self', verbose_name='親コメント', null=True, blank=True, on_delete=models.CASCADE)
-
     def __str__(self):
-        return self.text[:10]
+        return self.post.title + 'Image'
+
+
+
+# this might use later #
+# class Comment(models.Model):
+#     text = models.TextField('Comment')
+#     post = models.ForeignKey(Post, verbose_name='対象メモリー', on_delete=models.CASCADE)
+
+#     """ Commentに結びつく """
+#     parent = models.ForeignKey('self', verbose_name='親コメント', null=True, blank=True, on_delete=models.CASCADE)
+
+#     def __str__(self):
+#         return self.text[:10]
 
 
 

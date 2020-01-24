@@ -7,7 +7,8 @@
 <div class="user-profile">
     <div class="inner-profile">
         <div class="profile-update">
-            <a href="{% url 'post:post' %}" class="btn btn-outline-primary">Home</a>
+            <!-- <a href="{% url 'post:post' %}" class="btn btn-outline-primary">Home</a> -->
+            <a href="{% url 'password_change' %}" class="btn btn-outline-primary">Change Password</a>
             <a class="btn btn-primary" href="{% url 'accounts:update_profile' user.userprofile.pk %}">Update</a>
         </div>
         <div class="image-profile-container">

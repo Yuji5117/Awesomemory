@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block css %}<link rel="stylesheet" href="{% static 'css/post/post_create.css' %}">{% endblock %}
+{% block title %}Post Your Memory{% endblock %}
+
+{% block content %}
+<section class="post-section">
+    <div class="post-create w-100 ">
+        <h2 class="sub-title">Post Your Memory</h2>
+        <form class="post-form" action="" method="Post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="d-flex flex-wrap pt-5">
+                {{ formset.management_form }}
+                {% for form in formset %}
+                {{ form.as_p }}
+                {% endfor %}
+            </div>
+            <div class="pt-5">
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock %}

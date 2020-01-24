@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block css %}<link rel="stylesheet" href="{% static 'css/schedule/schedule_confirm_delete.css' %}">{% endblock %}
+{% block css %}<link rel="stylesheet" href="{% static 'css/confirm_delete.css' %}">{% endblock %}
 
 {% block content %}
 <div class="card">
     <div class="card-body">
-        <h5 class="card-title">Are you really sure to delete this ?</h5>
+        <h5 class="card-title">Are you sure you want to delete {{ schedule.summary }} ?</h5>
         <div class="delete-choice">
             <a class="btn btn-outline-primary" href="{% url 'schedule:schedule' %}">Back</a>
             <form class="delete-form" action="" method="POST">

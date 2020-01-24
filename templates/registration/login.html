@@ -10,6 +10,7 @@
         <h2 class="sub-title">Account Login</h2>
         {% csrf_token %}
         {% for item in form %}
+        {{ item.errors }}
         <div class="form-group">
             <label for="{{item.id_for_label}}">{{item.label}}</label>
             <input 
@@ -20,7 +21,7 @@
                 id="{{item.id_for_label}}">
         </div>
         {% endfor %}
-        <div class="login-btn">
+        <div class="login-btn pt-5">
             <button type="submit" class="form-control btn btn-primary ">Login</button>
         </div>
         <div class="text-center pt-5 pb-3">

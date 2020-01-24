@@ -11,8 +11,8 @@ class ScheduleCreateForm(forms.ModelForm):
         model = Schedule
         fields = (
             'date',
-            'summary',
-            'description'
+            'title',
+            'content'
             )
         # HTML input_type:date
         widgets = {'date': DateInput()}

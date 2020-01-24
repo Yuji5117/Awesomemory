@@ -6,32 +6,35 @@
 
 {% block content %}
 <div class="login-wrapper">
-    <form action="" method="POST" class="login-form">
-        <h2 class="sub-title">Account Login</h2>
+    <form action="" method="POST" class="signup-form">
+        <h2 class="sub-title">Signup</h2>
         {% csrf_token %}
         {% for item in form %}
         <div class="form-group">
             <label for="{{item.id_for_label}}">{{item.label}}</label>
             <input 
-                type="{{item.field.widget.input_type}}"
-                class="form-control" 
-                {% if item.field.required %}required{% endif %} 
-                name="{{item.name}}" 
-                id="{{item.id_for_label}}">
+            type="{{item.field.widget.input_type}}"
+            class="form-control" 
+            {% if item.field.required %}required{% endif %} 
+            name="{{item.name}}" 
+            id="{{item.id_for_label}}">
         </div>
         {% endfor %}
+
+        <!-- If error happens.... -->
+        {% if form.errors %}
+        {% for field in form %}
+            {% for error in field.errors %}
+                <p class="pl-5 text-danger">*{{ error }}</p>
+            {% endfor %}
+        {% endfor %}
+        {% endif %} 
+
         <div class="login-btn">
             <button type="submit" class="form-control btn btn-success ">Sign Up</button>
+            <p class="pt-4 text-center">Back to <a href="{% url 'login' %}">Login</a></p>
         </div>
     </form>
 </div>
 
 {% endblock %}
-
-
-<h1>Signup</h1>
-<form action="" method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Signup</button>
-</form>
