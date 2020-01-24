@@ -12,7 +12,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .forms import PostForm, ImageForm, ImageModelFormSet
-from .models import Post, Category, Image
+from .models import Post, Image
 
 
 
