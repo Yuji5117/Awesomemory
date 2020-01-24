@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Post, Category, Image
+from .models import Post, Image
 
 
 class PostForm(forms.ModelForm):

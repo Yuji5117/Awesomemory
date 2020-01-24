@@ -18,17 +18,17 @@ User = get_user_model()
 
 
 
-class Category(models.Model):
-    name = models.CharField('カテゴリー', max_length=50)
+# class Category(models.Model):
+#     name = models.CharField('カテゴリー', max_length=50)
 
-    def __str__(self):
-        return self.name
+#     def __str__(self):
+#         return self.name
 
 
 class Post(models.Model):
     created_by  = models.ForeignKey(User, on_delete=models.CASCADE)
     title      = models.CharField('タイトル', max_length=50)
-    category   = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, blank=True)
+    category   = models.CharField('カテゴリー', max_length=50, null=True, blank=True)
     thumbnail  = ImageSpecField(source='image', processors=[ResizeToFill(250,250)])
     image      = models.FileField('画像', upload_to='photos/%y/%m/%d', null=True, blank=True)
     text       = models.TextField()
