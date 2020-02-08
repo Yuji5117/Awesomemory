@@ -3,18 +3,22 @@
 {% load widget_tweaks %}
 
 {% block css %}<link rel="stylesheet" href="{% static 'css/post/post_create.css' %}">{% endblock %}
-{% block title %}Post Your Memory{% endblock %}
+{% block title %}Add Your Images{% endblock %}
 
 {% block content %}
 <section class="post-section">
     <div class="post-create w-100 ">
-        <h2 class="sub-title">Post Your Memory</h2>
-        <form class="post-form" action="" method="Post" enctype="multipart/form-data">
+        <h2 class="sub-title">Post More Memories</h2>
+        <form class="post-form" method="Post" enctype="multipart/form-data">
+            <h3 class="bb-1">Title:   <span class="text-success">{{ post.title }}</span></h3>
             {% csrf_token %}
-            <div class="d-flex flex-wrap pt-5">
+            <div class="d-flex flex-wrap justify-content-between pt-5" >
                 {{ formset.management_form }}
-                {% for form in formset %}
-                {{ form.as_p }}
+                {% for form in formset %}                
+                    {% for field in form %}
+                    <p class="pb-4">{{ field }}</p>
+                    
+                    {% endfor %}
                 {% endfor %}
             </div>
             <div class="pt-5">
