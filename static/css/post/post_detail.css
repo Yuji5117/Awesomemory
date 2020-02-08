@@ -16,6 +16,7 @@
     padding: 10px;
 }
 .thumbnail {
+    object-fit: cover;
     box-shadow: 0 10px 10px rgb(0, 0, 0, 0.5);
 }
 .detail-thumbnail-text {
@@ -43,6 +44,11 @@
     object-fit: cover;
     box-shadow: 0 10px 10px rgb(0, 0, 0, 0.5);
     background-color: green;
+    transition: .5s;
+}
+.multi-images:hover {
+    transform: translateY(-8px);
+    cursor: pointer;
 }
 .btns-items {
     padding: 10px;

@@ -3,7 +3,7 @@
 {% load widget_tweaks %}
 
 {% block css %}<link rel="stylesheet" href="{% static 'css/post/post_create.css' %}">{% endblock %}
-{% block title %}Post Your Memory{% endblock %}
+{% block title %}Edit Your Memory{% endblock %}
 
 {% block content %}
 <section class="post-section">
@@ -16,8 +16,14 @@
             <label for="category">Category</label>
             {{ form.category|add_class:"form-control" }}
             <label for="thumbnail">Thumbnail</label>
-            {{ form.image | add_class:"form-control-file" }}
-            <label for="images">Images</label>
+            <div class="d-flex flex-row">
+                <div class="thumbnail-img">
+                    <img src="{{ post.image.url }}" width="200" height="150">
+                </div>
+                <div class="thumbnail-form pl-5">
+                    {{ form.image | add_class:"form-control-file" }}
+                </div>
+            </div>
             <label for="text">Text</label>
             {{ form.text|add_class:"form-control" }}
             <a href="{% url 'post:post' %}" class="btn btn-outline-primary">戻る</a>

@@ -2,8 +2,7 @@
 {% load static %}
 
 {% block css %}<link rel="stylesheet" href="{% static 'css/post/post_detail.css' %}">{% endblock %}
-
-{% block title %}Love Memory{% endblock %}
+{% block title %}Detail Memory{% endblock %}
 
 {% block content %}
 <div class="detail-wrapper">
@@ -14,9 +13,9 @@
     <div class="detail-inner d-flex">
 
         <div class="thumbnail-container">
-            {% if post.thumbnail %}
+            {% if post.image %}
             <div class="detail-thumbnail">
-                <img class="thumbnail" src="{{ post.thumbnail.url }}" alt="" width="400px" height="250px">
+                <img class="thumbnail" src="{{ post.image.url }}" alt="" width="400px" height="250px">
             </div>
             {% endif %}
             <div class="detail-thumbnail-text">
@@ -24,7 +23,7 @@
             </div>
             <div class="btns-items">
                 <a class="btn btn-outline-primary" href="{% url 'post:post' %}">Back</a>
-                <a class="btn btn-primary" href="{% url 'post:post_update' post.pk %}">Update</a>
+                <a class="btn btn-primary" href="{% url 'post:post_update' post.pk %}">Edit</a>
                 <a class="btn btn-danger" href="{% url 'post:post_delete' post.pk %}">Delete</a>
             </div>
         </div>

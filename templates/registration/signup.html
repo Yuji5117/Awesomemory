@@ -3,11 +3,12 @@
 {% load widget_tweaks %}
 
 {% block css %}<link rel="stylesheet" href="{% static 'css/accounts/registration.css' %}">{% endblock %}
+{% block title %}Signup{% endblock %}
 
 {% block content %}
 <div class="login-wrapper">
     <form action="" method="POST" class="signup-form">
-        <h2 class="sub-title">Signup</h2>
+        <h2 class="registration-sub-title">Signup</h2>
         {% csrf_token %}
         {% for item in form %}
         <div class="form-group">

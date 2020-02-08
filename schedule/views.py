@@ -44,3 +44,4 @@ class ScheduleUpdateView(LoginRequiredMixin, UpdateView):
 class ScheduleDeleteView(LoginRequiredMixin, DeleteView):
     model = Schedule
     success_url = reverse_lazy('schedule:schedule')
+
