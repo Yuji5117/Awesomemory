@@ -101,6 +101,3 @@ Django version 3.0.3, using settings 'conf.settings'
 Starting development server at http://127.0.0.1:8000/
 Quit the server with CONTROL-C.
 ```
-
-
-
