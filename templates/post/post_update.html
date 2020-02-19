@@ -9,7 +9,7 @@
 <section class="post-section">
     <div class="post-create">
         <h2 class="sub-title">Post Your Memory</h2>
-        <form class="post-form" action="{% url 'post:post_create' %}" method="Post" enctype="multipart/form-data">
+        <form class="post-form" method="Post" enctype="multipart/form-data">
             {% csrf_token %}
             <label for="title">Title</label>
             {{ form.title|add_class:"form-control" }}
@@ -18,7 +18,7 @@
             <label for="thumbnail">Thumbnail</label>
             <div class="d-flex flex-row">
                 <div class="thumbnail-img">
-                    <img src="{{ post.image.url }}" width="200" height="150">
+                    <img src="{{ post.image.url }}" width="150" height="95">
                 </div>
                 <div class="thumbnail-form pl-5">
                     {{ form.image | add_class:"form-control-file" }}

@@ -7,6 +7,9 @@ class PostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = ['title', 'category', 'image', 'text'] 
+        widgets = {
+            'text': forms.Textarea(attrs={'rows':6, 'cols':15}),
+        }
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
@@ -22,13 +25,6 @@ class ImageForm(forms.ModelForm):
 # formset for multi-forms #
 ImageModelFormSet = forms.modelformset_factory(Image, form=ImageForm, fields=('multi_images', ), extra=5, max_num=5)
 
-
-# might use this later #
-# class CommentForm(forms.ModelForm):
-
-#     class Meta:
-#         model = Comment
-#         fields = ['text', ]
 
 
 
