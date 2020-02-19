@@ -6,57 +6,52 @@
 
 {% block content %}
 <div class="user-profile">
-    <div class="inner-profile">
+    <h2 class="registration-sub-title profile-title">Your Profile</h2>
+    <!-- <div class="inner-profile"> -->
         <form action="" method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
             <div class="profile-update">
                 <a href="{% url 'accounts:profile' userprofile.pk %}" class="btn btn-outline-primary">Back</a>
                 <button type="submit" class="btn btn-primary">Save</button>
             </div>
-            <div class="image-profile-update-container">
-                <!-- check image exist or not first then image will be able to show up-->
-                {% if userprofile.profile_image %}
-                <img src="{{ userprofile.profile_image.url }}" alt="" class="image-profile-update">
-                {% endif %}
-            </div>
-            <div class="info-profile-container">
-                <div class="image-update pb-4">
-                    <div>
-                        <p class="pb-2">Image:</p>
-                    </div>
-                    <div>
-                        <p>{{ form.profile_image }}</p>
-                    </div>
+            {% csrf_token %}
+            <div class="inner-profile">
+                <div class="image-profile-update-container">
+                    <!-- check image exist or not first then image will be able to show up-->
+                    {% if userprofile.profile_image %}
+                    <img src="{{ userprofile.profile_image.url }}" alt="" class="image-profile-update">
+                    {% endif %}
                 </div>
-                <table class="profile-table">
-                    <!-- <tr class="prof-block">
-                        <td class="prof-title">Image</td>
-                        <td class="prof-info">{{ form.profile_image }}</td>
-                    </tr> -->
-                    <!-- <tr class="prof-block">
-                        <td class="prof-title">Email</td>
-                        <td class="prof-info">{{ user.email }}</td>
-                    </tr> -->
-                    <tr class="prof-block">
-                        <td class="prof-title">First Name</td>
-                        <td class="prof-info">{{ form.first_name }}</td>
-                    </tr>
-                    <tr class="prof-block">
-                        <td class="prof-title">Last Name</td>
-                        <td class="prof-info">{{ form.last_name }}</td>
-                    </tr>
-                    <tr class="prof-block">
-                        <td class="prof-title">Gender</td>
-                        <td class="prof-info"> {{ form.gender }}</td>
-                    </tr>
-                    <tr class="prof-block">
-                        <td class="prof-title">Age</td>
-                        <td class="prof-info">{{ form.age }}</td>
-                    </tr>
-                  </table>
+                <div class="info-profile-container">
+                    <div class="image-update pb-4">
+                        <div>
+                            <p class="pb-2">Image</p>
+                        </div>
+                        <div>
+                            <p>{{ form.profile_image }}</p>
+                        </div>
+                    </div>
+                    <table class="profile-table">
+                        <tr class="prof-block">
+                            <td class="prof-title">First Name</td>
+                            <td class="prof-info">{{ form.first_name }}</td>
+                        </tr>
+                        <tr class="prof-block">
+                            <td class="prof-title">Last Name</td>
+                            <td class="prof-info">{{ form.last_name }}</td>
+                        </tr>
+                        <tr class="prof-block">
+                            <td class="prof-title">Gender</td>
+                            <td class="prof-info"> {{ form.gender }}</td>
+                        </tr>
+                        <tr class="prof-block">
+                            <td class="prof-title">Age</td>
+                            <td class="prof-info">{{ form.age }}</td>
+                        </tr>
+                      </table>
+                </div>
             </div>
         </form>
-    </div>
+    <!-- </div> -->
 </div>
 
 {% endblock %}

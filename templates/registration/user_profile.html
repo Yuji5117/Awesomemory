@@ -5,12 +5,12 @@
 
 {% block content %}
 <div class="user-profile">
+    <h2 class="registration-sub-title profile-title">Your Profile</h2>
+    <div class="profile-update">
+        <a href="{% url 'password_change' %}" class="btn btn-outline-primary">Change Password</a>
+        <a href="{% url 'accounts:update_profile' user.userprofile.pk %}" class="btn btn-primary">Update</a>
+    </div>
     <div class="inner-profile">
-        <div class="profile-update">
-            <!-- <a href="{% url 'post:post' %}" class="btn btn-outline-primary">Home</a> -->
-            <a href="{% url 'password_change' %}" class="btn btn-outline-primary">Change Password</a>
-            <a class="btn btn-primary" href="{% url 'accounts:update_profile' user.userprofile.pk %}">Update</a>
-        </div>
         <div class="image-profile-container">
             <!-- check image exist or not first then image will be able to show up-->
             {% if userprofile.profile_image %}
