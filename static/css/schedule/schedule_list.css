@@ -3,7 +3,7 @@
     margin: 0 auto;
 }
 .schedule-items {
-    height: 550px;
+    height: 500px;
     margin-top: 10px;
     padding-top: 10px;
     overflow: scroll;
@@ -40,15 +40,13 @@
     padding: 5px 20px 15px 20px;
     display: flex;
     justify-content: space-between;
-    /* background-color: red; */
 }
 .schedule-text {
     width: 70%;
     height: 50px;
-    /* background-color: blue; */
 }
 .btn-create {
     position: absolute;
-    top: 100px;
+    top: 110px;
     right: 195px;
 }
