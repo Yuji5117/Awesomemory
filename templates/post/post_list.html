@@ -5,7 +5,7 @@
 {% block title %}Memory List{% endblock %}
 
 {% block search %}
-<div class="header-right">
+<div class="header-search">
     <form class="search-box" action="{% url 'post:post' %}" method="GET">
         <input class="search-txt" type="text" name="query" value="" placeholder="Type Title or Category">
         <button class="search-btn" type="submit"><i class="fas fa-search"></i></button>
@@ -16,6 +16,7 @@
 {% block content %}
 <div class="main-inner">
     <h2 class="sub-title">Your Memories</h2>
+    <a class="post-create-btn btn btn-primary" href="{% url 'post:post_create' %}">Create Memomory</a>
     <div class="memory-items">
         {% for post in posts %}
         <div class="memory-item">
