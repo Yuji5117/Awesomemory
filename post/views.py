@@ -20,7 +20,7 @@ def paginator_queryset(request, queryset, count):
 
     # Pagenator: ex:paginator = Paginator(post(queryset), (count)3) #
     paginator = Paginator(queryset, count)
-    page =request.GET.get('page')
+    page = request.GET.get('page')
 
     try:
         post_page = paginator.page(page)
@@ -61,6 +61,8 @@ class PostDetail(generic.DetailView):
         context = super().get_context_data(**kwargs)
         context['image_list'] = Image.objects.all()
         return context
+
+
 
 class PostCreate(LoginRequiredMixin, generic.CreateView):
     model = Post
