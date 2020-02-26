@@ -1,0 +1,17 @@
+.update_images_save {
+    position: absolute;
+    top: 145px;
+    right:200px;
+}
+
+
+
+@media screen and (max-width: 860px) {
+    .post-form {
+        margin-top: 20px;
+    }
+    .update_images_save {
+        top: 165px;
+        right: 20px;
+    }
+}

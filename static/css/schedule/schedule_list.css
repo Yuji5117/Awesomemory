@@ -50,3 +50,44 @@
     top: 110px;
     right: 195px;
 }
+
+
+@media screen and (max-width: 860px) {
+    .section {
+        width: 90%;
+        margin: 0 auto;
+    }
+    .schedule-items {
+        height: auto;
+        overflow: none;
+        margin-top: 30px;
+    }
+
+    .schedule-text {
+        width: 100%;
+        height: 65px;
+        overflow: scroll;
+        padding-right: 5px;
+    }
+
+    .schedule-main {
+        padding: 20px 10px;
+    }
+    .schedule-sub {
+        width: 100%;
+        padding: 5px 10px 15px 10px;
+    }
+    .btn-create {
+        position: absolute;
+        top: 190px;
+        right: 20px;
+    }
+    .schedule-btn {
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+    }
+    .schedule-btn a {
+        font-size: 14px;
+    }
+}

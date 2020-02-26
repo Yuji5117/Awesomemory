@@ -88,6 +88,16 @@ header {
 }
 
 /* header-search(search box) */
+header {
+    position: fixed;
+}
+
+/* FOR HEADER FIXED */
+.header-fixed {
+    margin-top: -60px;
+    padding-top: 60px;
+}
+/* FOR HEADER FIXED */
 .header-search {
     height: 60px;
     position: absolute;
@@ -137,6 +147,11 @@ header {
     line-height: 40px;
 }
 
+/* FOR RESPONSIVE SO MAKE IT NONE*/
+.menu-bar {
+    display: none;
+}
+
 /* main */
 .wrapper {
     width: 100%;
@@ -148,3 +163,75 @@ header {
     margin: 0 auto;
 }
 
+
+/* レスポンシブ */
+@media screen and (max-width: 860px) {
+    /* header */
+    header {
+        background: linear-gradient(to bottom right, #00b09b, #96c93d); 
+        width: 100%;
+        height: 55px;
+        z-index: 2;
+    }
+    .header-container { 
+        width: 100%;
+        height: 60px;
+        margin: 0 auto;
+    }
+    /* header-inner */
+    .header-inner {
+        display: flex;
+        justify-content: center;
+    }
+    .header-logo {
+        font-size: 24px;
+        padding-right: 0;
+    }
+    .header-nav {
+        display: none;
+    }
+
+    .wrapper-container {
+        width: 100%;
+    }
+
+    /* FOR MENU NAV */
+    .menu-bar {
+        display: block;
+    }
+    .menu-check-btn {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+    }
+    .menu-check-btn .fa-bars {
+        font-size: 28px;
+        color: white;
+    }
+    .menu-lists {
+        width: 100%;
+        height: 100%;
+        padding-top: 50px;
+        position: fixed;
+        top: 55px;
+        left: -100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        text-align: center;
+        transition: .5s;
+    }
+     /* for jQuery */
+     .menu-bar .menu-lists-active {
+        left: 0;
+    }
+    /* for jQuery */
+    
+    .menu-lists li {
+        padding-top: 30px;
+    }
+    .menu-lists li .toggle-closer {
+        color: white;
+        font-size: 28px;
+        text-decoration: none;
+    }
+
+}
