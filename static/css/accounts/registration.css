@@ -56,3 +56,41 @@
     border-radius: 5px;
     box-shadow: 0 10px 10px rgb(0, 0, 0, 0.3);
 }
+
+
+
+
+@media screen and (max-width: 860px) {
+    .login-form {
+        width: 90%;
+    }
+
+    .form-group {
+        padding: 20px 20px 0 20px;
+        background-color: #fff;
+    }
+    .login-btn {
+        padding: 20px 20px 0 20px;
+    }
+    
+
+    /* signup */
+    .signup-form {
+        width: 90%;
+    }
+
+    /* password reset section */
+    .password-reset-form {
+        width: 100%;
+        height: 600px;
+    }
+    .reset-text {
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    /* password_change */
+    .password-change-form {
+        width: 90%;
+    }
+}

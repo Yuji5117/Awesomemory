@@ -16,18 +16,17 @@
             <label for="category">Category</label>
             {{ form.category|add_class:"form-control" }}
             <label for="thumbnail">Thumbnail</label>
-            <div class="d-flex flex-row">
+            <div class="thumbnail-form-box">
                 <div class="thumbnail-img">
                     <img src="{{ post.image.url }}" width="150" height="95">
                 </div>
-                <div class="thumbnail-form pl-5">
+                <div class="thumbnail-form">
                     {{ form.image | add_class:"form-control-file" }}
                 </div>
             </div>
             <label for="text">Text</label>
             {{ form.text|add_class:"form-control" }}
-            <a href="{% url 'post:post' %}" class="btn btn-outline-primary">戻る</a>
-            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="submit" class="update-save btn btn-primary">Save</button>
         </form>
     </div>
 </section>

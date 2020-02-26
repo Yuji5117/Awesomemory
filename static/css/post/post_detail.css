@@ -40,13 +40,13 @@
     overflow: scroll;
 }
 .detail-image {
-    padding: 10px 0 0 15px;
+    padding: 10px 0 0 0;
 }
 .multi-images {
+    /* margin-right: 10px; */
     margin-bottom: 15px;
     object-fit: cover;
     box-shadow: 0 10px 10px rgb(0, 0, 0, 0.5);
-    background-color: green;
     transition: .5s;
 }
 .multi-images:hover {
@@ -59,4 +59,57 @@
 }
 .btns-items .btn {
     margin-right: 5px;
+}
+
+
+/* レスポンシブ */
+@media screen and (max-width: 860px) {
+    .detail-wrapper {
+        width: 90%;
+        margin: 0 auto;
+    }
+    .detail-inner {
+        padding-bottom: 10px;
+        margin-top: -20px;
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+    }
+    .update-btn {
+        position: absolute;
+        top: 700px;
+        right: 50%;
+        transform: translate(50%, 0);
+        
+    }
+
+    .detail-thumbnail {
+        padding: 10px 0;
+    }
+
+    .thumbnail {
+        width: 100%;
+        height: 200px;
+    }
+
+    .thumbnail-container {
+        width: 100%;
+    }
+    .detail-thumbnail-text {
+        padding: 10px 0 10px 0;
+    }
+
+    .detail-image {
+        padding: 10px 0 0 0;
+    }
+    .multi-images {
+        width: 100%;
+        margin-bottom: 30px;
+    }
+    .btns-items {
+        padding: 0;
+        margin-bottom: 90px;
+        display: flex;
+    }
 }

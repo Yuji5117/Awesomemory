@@ -1,0 +1,40 @@
+<header>
+    <div class="header-container">
+        <div class="header-inner">
+            <div class="header-logo-box">
+                <h1 class="header-logo"><a href="{% url 'post:post' %}">Awesomemory</a></h1>
+            </div>
+            
+            {% block search %}
+            {% endblock %}
+
+            {% if user.is_authenticated %}
+            <div class="header-nav-box">
+                <nav>
+                    <ul class="header-nav">
+                        <li><a href="{% url 'post:post' %}">Memories</a></li>
+                        <li><a href="{% url 'schedule:schedule' %}">Schedule</a></li>
+                        <li><a href="{% url 'accounts:profile' user.userprofile.pk %}">Profile</a></li>
+                        <li><a href="{% url 'logout' %}">Logout</a></li>
+                    </ul>
+                </nav>
+            </div>
+            {% endif %}
+        </div>
+        <!-- FOR RESPONSIVE -->
+        {% if user.is_authenticated %}
+        <nav class="menu-bar">
+            <div class="menu-check-btn">
+                <i id="menu-toggle" class="fas fa-bars"></i>
+            </div>
+            <ul class="menu-lists">
+                <li><a href="{% url 'post:post' %}" class="toggle-closer">Memories</a></li>
+                <li><a href="{% url 'schedule:schedule' %}" class="toggle-closer">Schedule</a></li>
+                <li><a href="{% url 'accounts:profile' user.userprofile.pk %}" class="toggle-closer">Profile</a></li>
+                <li><a href="{% url 'logout' %}" class="toggle-closer">Logout</a></li>
+            </ul>
+        </nav>
+        {% endif %}
+    </div>
+</header>
+

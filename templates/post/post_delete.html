@@ -9,7 +9,7 @@
     <div class="card-body">
         <h5 class="card-title">Are you sure you want to delete {{ post.title }}?</h5>
         <div class="delete-choice">
-            <a class="btn btn-outline-primary" href="{% url 'schedule:schedule' %}">Back</a>
+            <a class="btn btn-outline-primary" href="{% url 'post:post_detail' post.pk %}">Back</a>
             <form class="delete-form" action="" method="POST">
                 {% csrf_token %}
                 <button class="btn btn-danger">Delete</button>

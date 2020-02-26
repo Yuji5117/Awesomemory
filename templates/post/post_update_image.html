@@ -2,7 +2,10 @@
 {% load static %}
 {% load widget_tweaks %}
 
-{% block css %}<link rel="stylesheet" href="{% static 'css/post/post_create.css' %}">{% endblock %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/post/post_create.css' %}">
+<link rel="stylesheet" href="{% static 'css/post/post_update_image.css' %}">
+{% endblock %}
 {% block title %}Add Your Images{% endblock %}
 
 {% block content %}
@@ -18,7 +21,7 @@
                 <p class="pb-4 mb-3" style="border-bottom: 1px solid black">{{ form }}</p>
                 {% endfor %}
             </div>
-            <div class="position-absolute" style="top: 145px; right:200px;">
+            <div class="update_images_save">
                 <button type="submit" class="multi-images-save btn btn-primary">Save</button>
             </div>
         </form>
